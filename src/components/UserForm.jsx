@@ -6,7 +6,7 @@ const initialUserForm = {
     email: ''
 };
 
-export const UserForm = () => {
+export const UserForm = ({handlerAddUser}) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
     const {username, password, email} = userForm;
@@ -20,7 +20,21 @@ export const UserForm = () => {
         });
     };
 
-    return (<form action="">
+    const onSubmit = (event) => {
+        event.preventDefault();
+
+        if( !(username != '') || !(password != '') || !(email != '') ) {
+            alert('Debe completar los campos del formulario!');
+            return;
+        }
+
+        console.log('send to form...');
+        handlerAddUser(userForm);
+        setUserForm(initialUserForm);
+       
+    };
+
+    return (<form onSubmit={onSubmit} action="">
 
         <input onChange={ onInputChange } className="form-control my-3 w-75" placeholder="Username" name="username" value={username}/>
 
