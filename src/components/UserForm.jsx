@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
+export const UserForm = ({ handlerAddUser, initialUserForm, userSelected, handlerCloseForm }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
     const { id, username, password, email } = userForm;
@@ -40,17 +40,19 @@ export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
 
     };
 
-    return (<form onSubmit={onSubmit} action="">
+    const onCloseForm = () => {
+        handlerCloseForm();
+        setUserForm(initialUserForm);
+    };
 
-        <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Username" name="username" value={username} />
-
-        {(id != 0) || <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password} />}
-
-        <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
-
-        <input type="hidden" name="id" value={id} />
-
-        <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
-
-    </form>);
+    return (<>
+        <form onSubmit={onSubmit} action="">
+            <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Username" name="username" value={username} />
+            {(id != 0) || <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password} />}
+            <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
+            <input type="hidden" name="id" value={id} />
+            <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
+            <button onClick={() => onCloseForm()} type="button" className="btn btn-primary mx-2">Cerrar</button>
+        </form>
+    </>);
 };

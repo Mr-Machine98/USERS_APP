@@ -22,6 +22,7 @@ export function useUsers() {
 
     const [users, dispatch] = useReducer(usersReducer, initialUsers);
     const [userSelected, setUserSelected] = useState(initialUserForm);
+    const [visibleForm, setVisibleForm] = useState(false);
 
     const handlerAddUser = (user) => {
         let type = (user.id === 0) ? 'addUser' : 'updateUser';
@@ -36,6 +37,7 @@ export function useUsers() {
             text: (user.id === 0) ? "El usuario ha sido creado con exito!" : "El usuario ha sido actualizado con exito!",
             icon: "success"
         });
+        handlerCloseForm();
     };
 
     const handlerRemoveUser = (id) => {
@@ -65,14 +67,27 @@ export function useUsers() {
 
     const handlerUserSelectedForm = (user) => {
         setUserSelected({ ...user });
+        setVisibleForm(true);
+    };
+
+    const handlerOpenForm = () => {
+        setVisibleForm(true);
+    };
+
+    const handlerCloseForm = () => {
+        setVisibleForm(false);
+        setUserSelected(initialUserForm);
     };
 
     return {
         users,
         userSelected,
         initialUserForm,
+        visibleForm,
         handlerAddUser,
         handlerRemoveUser,
-        handlerUserSelectedForm
+        handlerUserSelectedForm,
+        handlerOpenForm,
+        handlerCloseForm
     };
 }
