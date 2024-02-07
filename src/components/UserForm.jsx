@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
-export const UserForm = ({handlerAddUser, initialUserForm, userSelected}) => {
+export const UserForm = ({ handlerAddUser, initialUserForm, userSelected }) => {
 
     const [userForm, setUserForm] = useState(initialUserForm);
-    const {id, username, password, email} = userForm;
+    const { id, username, password, email } = userForm;
 
     // Trigger que se dispara cuando cambia el valor del dato seleccionado
     useEffect(() => {
@@ -12,9 +13,9 @@ export const UserForm = ({handlerAddUser, initialUserForm, userSelected}) => {
         });
     }, [userSelected]);
 
-    const onInputChange = ({target}) => {
+    const onInputChange = ({ target }) => {
         //console.log(target.value);
-        let {name, value} = target;
+        let { name, value } = target;
         setUserForm({
             ...userForm,
             [name]: value
@@ -24,28 +25,32 @@ export const UserForm = ({handlerAddUser, initialUserForm, userSelected}) => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        if( !(username != '') || !(password != '') || !(email != '') ) {
-            alert('Debe completar los campos del formulario!');
+        if (!(username != '') || !(password != '') || !(email != '')) {
+            Swal.fire({
+                title: "Error de validación",
+                text: "Debe completar los campos del formulario!",
+                icon: "error"
+            });
             return;
         }
 
         console.log('send to form...');
         handlerAddUser(userForm);
         setUserForm(initialUserForm);
-       
+
     };
 
     return (<form onSubmit={onSubmit} action="">
 
-        <input onChange={ onInputChange } className="form-control my-3 w-75" placeholder="Username" name="username" value={username}/>
-        
-        { (id != 0) || <input onChange={ onInputChange } type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password}/>}
+        <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Username" name="username" value={username} />
 
-        <input onChange={ onInputChange } className="form-control my-3 w-75" placeholder="Email" name="email" value={email}/>
+        {(id != 0) || <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password} />}
 
-        <input type="hidden" name="id" value={id}/>
+        <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
 
-        <button type="submit" className="btn btn-primary">{ (id != 0) ? 'Editar' : 'Crear' }</button>
+        <input type="hidden" name="id" value={id} />
+
+        <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
 
     </form>);
 };
