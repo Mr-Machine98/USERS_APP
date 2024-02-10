@@ -9,6 +9,7 @@ export const UsersApp = () => {
 
     return (
         <>
+            {/**Aqui debemos aplicar Routes */}
             {login.isAuth == true ? (
                 <>
                     <NavBar handlerLogout={handlerLogout} login={login} />
