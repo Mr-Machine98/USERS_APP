@@ -52,7 +52,7 @@ export const UserForm = ({ handlerAddUser, initialUserForm, userSelected, handle
             <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
             <input type="hidden" name="id" value={id} />
             <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
-            <button onClick={() => onCloseForm()} type="button" className="btn btn-primary mx-2">Cerrar</button>
+            {handlerCloseForm != undefined ? <button onClick={() => onCloseForm()} type="button" className="btn btn-primary mx-2">Cerrar</button> : null }
         </form>
     </>);
 };

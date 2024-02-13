@@ -8,6 +8,7 @@ export const UsersList = ({ users = [], handlerRemoveUser, handlerUserSelectedFo
                 <th>username</th>
                 <th>email</th>
                 <th>update</th>
+                <th>👤</th>
                 <th>remove</th>
             </tr>
         </thead>
