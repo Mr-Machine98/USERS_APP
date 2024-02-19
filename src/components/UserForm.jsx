@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import Swal from "sweetalert2";
 import { UserContext } from "../context/UserContext";
 
 export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
-    const { handlerAddUser, initialUserForm } = useContext(UserContext);
+    const { handlerAddUser, initialUserForm, errors } = useContext(UserContext);
     const [userForm, setUserForm] = useState(initialUserForm);
     const { id, username, password, email } = userForm;
 
@@ -27,19 +26,18 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
     const onSubmit = (event) => {
         event.preventDefault();
 
-        if (!(username != '') || !(password != '') || !(email != '')) {
-            Swal.fire({
-                title: "Error de validación",
-                text: "Debe completar los campos del formulario!",
-                icon: "error"
-            });
-            return;
-        }
+        // if (!(username != '') || !(password != '') || !(email != '')) {
+        //     Swal.fire({
+        //         title: "Error de validación",
+        //         text: "Debe completar los campos del formulario!",
+        //         icon: "error"
+        //     });
+        //     return;
+        // }
 
         console.log('send to form...');
         handlerAddUser(userForm);
-        setUserForm(initialUserForm);
-
+        //setUserForm(initialUserForm);
     };
 
     const onCloseForm = () => {
@@ -49,9 +47,16 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
     return (<>
         <form onSubmit={onSubmit} action="">
+
             <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Username" name="username" value={username} />
+            <p className="text-danger">{errors?.username}</p>
+            
             {(id != 0) || <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password} />}
+            <p className="text-danger">{errors?.password}</p>
+            
             <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
+            <p className="text-danger">{errors?.email}</p>
+            
             <input type="hidden" name="id" value={id} />
             <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
             {handlerCloseForm != undefined ? <button onClick={() => onCloseForm()} type="button" className="btn btn-primary mx-2">Cerrar</button> : null }

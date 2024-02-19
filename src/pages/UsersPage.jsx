@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserModalForm } from "../components/UserModalForm";
 import { UsersList } from "../components/UsersList";
 import { UserContext } from "../context/UserContext";
@@ -9,7 +9,15 @@ export const UsersPage = () => {
     const {
         users,
         visibleForm,
-        handlerOpenForm} = useContext(UserContext);
+        handlerOpenForm,
+        getUsers} = useContext(UserContext);
+
+    const findAll = async () => getUsers();
+
+    // find all users
+     useEffect(() => {
+        findAll();
+    }, []);
 
     return (<>
         {/* modal */}

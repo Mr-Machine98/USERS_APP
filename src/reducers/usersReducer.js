@@ -4,8 +4,7 @@ export function usersReducer(state = [], action) {
             return [
                 ...state,
                 {
-                    ...action.payload,
-                    id: Math.floor(Math.random() * 1000) + 1
+                    ...action.payload
                 }
             ];
         case 'updateUser':
@@ -17,6 +16,9 @@ export function usersReducer(state = [], action) {
             });
         case 'removeUser':
             return state.filter(user => user.id !== action.payload);
+        
+        case 'loadingUsers':
+            return action.payload;
 
         default:
             return state;

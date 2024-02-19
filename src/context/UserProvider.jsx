@@ -11,11 +11,13 @@ export function UserProvider({ children }) {
         userSelected,
         initialUserForm,
         visibleForm,
+        errors,
         handlerAddUser,
         handlerRemoveUser,
         handlerUserSelectedForm,
         handlerOpenForm,
-        handlerCloseForm } = useUsers();
+        handlerCloseForm,
+        getUsers } = useUsers();
 
     return (
         <UserContext.Provider value={
@@ -24,11 +26,13 @@ export function UserProvider({ children }) {
                 userSelected,
                 initialUserForm,
                 visibleForm,
+                errors,
                 handlerAddUser,
                 handlerRemoveUser,
                 handlerUserSelectedForm,
                 handlerOpenForm,
-                handlerCloseForm
+                handlerCloseForm,
+                getUsers
             }
         }>
             {children}
