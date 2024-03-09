@@ -19,9 +19,11 @@ export function NavBar() {
                         <li className="nav-item">
                             <NavLink className={"nav-link"} to={"/users"}>Usuarios</NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink className={"nav-link"} to={"/users/register"}>Registrar</NavLink>
-                        </li>
+                        { !login.isAdmin || 
+                            <li className="nav-item">
+                                <NavLink className={"nav-link"} to={"/users/register"}>Registrar</NavLink>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div className="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">

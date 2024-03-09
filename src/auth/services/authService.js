@@ -1,3 +1,12 @@
-export function loginUser(userLogin) {
-    return (userLogin.username == 'admin' && userLogin.password == '123');
+import axios from "axios";
+
+export async function loginUser({username, password}) {
+    try {
+        return await axios.post("http://localhost:8080/login", {
+            username,
+            password
+        });
+    } catch (error) {
+        throw error;
+    }
 }

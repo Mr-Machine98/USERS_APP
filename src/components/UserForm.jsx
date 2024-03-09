@@ -5,7 +5,8 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
     const { handlerAddUser, initialUserForm, errors } = useContext(UserContext);
     const [userForm, setUserForm] = useState(initialUserForm);
-    const { id, username, password, email } = userForm;
+    const { id, username, password, email, onAdmin } = userForm;
+    const [checked, setChecked] = useState(userForm.onAdmin);
 
     // Trigger que se dispara cuando cambia el valor del dato seleccionado
     useEffect(() => {
@@ -23,6 +24,14 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
         });
     };
 
+    const onCheckBoxChange = () => { 
+        setChecked(!checked);
+        setUserForm({
+            ...userForm,
+            onAdmin: checked
+        }); 
+    }
+
     const onSubmit = (event) => {
         event.preventDefault();
 
@@ -34,8 +43,7 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
         //     });
         //     return;
         // }
-
-        console.log('send to form...');
+        console.log(`send OBJ to controller...`);
         handlerAddUser(userForm);
         //setUserForm(initialUserForm);
     };
@@ -51,11 +59,16 @@ export const UserForm = ({ userSelected, handlerCloseForm }) => {
             <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Username" name="username" value={username} />
             <p className="text-danger">{errors?.username}</p>
             
-            {(id != 0) || <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={password} />}
+            <input onChange={onInputChange} type="password" className="form-control my-3 w-75" placeholder="Password" name="password" value={ (password == undefined) ? '': password} />
             <p className="text-danger">{errors?.password}</p>
             
             <input onChange={onInputChange} className="form-control my-3 w-75" placeholder="Email" name="email" value={email} />
             <p className="text-danger">{errors?.email}</p>
+
+            <div className="my-3 form-check">
+                <input onChange={onCheckBoxChange} type="checkbox" name="onAdmin" checked={onAdmin} className="form-check-input"/>
+                <label className="form-check-label">Admin</label>
+            </div>
             
             <input type="hidden" name="id" value={id} />
             <button type="submit" className="btn btn-primary">{(id != 0) ? 'Editar' : 'Crear'}</button>
