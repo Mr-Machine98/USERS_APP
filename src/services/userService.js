@@ -16,6 +16,7 @@ export async function findAll() {
         return response;
     } catch (error) {
         console.error(error.response.data);
+        throw error;
     }
     return [];
 }

@@ -32,11 +32,22 @@ export function useUsers() {
 
     
     const getUsers = async () => {
-        const result = await findAll();
-        dispatch({
-            type: 'loadingUsers',
-            payload: result.data
-        });
+        try {
+            const result = await findAll();
+            dispatch({
+                type: 'loadingUsers',
+                payload: result.data
+            });
+        } catch (error) {
+            if (error.response?.status == 401) {
+                Swal.fire({
+                    title: "Sesión expirada...",
+                    text: "Lo sentimos, la sesión ha expirado.",
+                    icon: "info"
+                });
+                handlerLogout();
+            } 
+        }
     };
 
     const handlerAddUser = async (user) => {
@@ -117,8 +128,7 @@ export function useUsers() {
                         icon: "info"
                     });
                     handlerLogout();
-                }
-                    
+                }   
             }
         });
     };
