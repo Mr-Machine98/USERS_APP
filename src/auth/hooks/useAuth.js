@@ -1,19 +1,13 @@
-import { useReducer } from "react";
-import { LoginReducer } from "../reducers/LoginReducer";
 import Swal from "sweetalert2";
 import { loginUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
-
-const initialLogin = JSON.parse(sessionStorage.getItem('login')) || {
-    isAuth: false,
-    isAdmin: false,
-    user: undefined
-};
+import { useDispatch, useSelector } from "react-redux";
+import { onLogin, onLogout } from "../../store/slices/auth/authSlice";
 
 export function useAuth() {
 
-
-    const [login, dispatch] = useReducer(LoginReducer, initialLogin);
+    const dispatch = useDispatch();
+    const { user, isAdmin, isAuth } = useSelector( state => state.auth );
     const navigate = useNavigate();
     
 
@@ -26,10 +20,7 @@ export function useAuth() {
             const claims = JSON.parse(window.atob(token.split(".")[1]));
             const user = {username: claims.username};
 
-            dispatch({
-                type: 'login',
-                payload: {user, isAdmin: claims.isAdmin}
-            });
+            dispatch( onLogin( {user, isAdmin: claims.isAdmin} ) );
 
             Swal.fire({
                 title: "Iniciaste!",
@@ -75,16 +66,14 @@ export function useAuth() {
     };
 
     const handlerLogout = () => {
-        dispatch({
-            type: 'logout',
-        });
+        dispatch(onLogout());
         sessionStorage.removeItem('login');
         sessionStorage.removeItem('token');
         sessionStorage.clear();
     };
 
     return {
-        login,
+        login: { user, isAdmin, isAuth },
         handlerLogin,
         handlerLogout
     };

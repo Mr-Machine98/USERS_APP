@@ -18,7 +18,6 @@ export async function findAll() {
         console.error(error.response.data);
         throw error;
     }
-    return [];
 }
 
 export async function save({username, email, password, onAdmin}) {

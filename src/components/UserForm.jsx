@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../context/UserContext";
+import { useEffect, useState } from "react";
+import { useUsers } from "../hooks/useUsers";
 
 export const UserForm = ({ userSelected, handlerCloseForm }) => {
 
-    const { handlerAddUser, initialUserForm, errors } = useContext(UserContext);
+    const { handlerAddUser, initialUserForm, errors } = useUsers();
     const [userForm, setUserForm] = useState(initialUserForm);
     const { id, username, password, email, onAdmin } = userForm;
     const [checked, setChecked] = useState(userForm.onAdmin);

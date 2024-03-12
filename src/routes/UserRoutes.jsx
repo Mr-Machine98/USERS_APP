@@ -2,15 +2,13 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { UsersPage } from "../pages/UsersPage";
 import { NavBar } from "../components/layout/NavBar";
 import { RegisterPage } from "../pages/RegisterPage";
-import { UserProvider } from "../context/UserProvider";
-import { AuthContext } from "../auth/context/AuthContext";
-import { useContext } from "react";
+import { useAuth } from "../auth/hooks/useAuth";
 
 export function UserRoutes() {
 
-    const { login } = useContext(AuthContext);
+    const { login } = useAuth();
     return (<>
-        <UserProvider>
+        {/* <UserProvider> */ }
             <NavBar />
             <Routes>
                 <Route path="users" element={<UsersPage />} />
@@ -20,6 +18,6 @@ export function UserRoutes() {
                 </>}
                 <Route path="/" element={<Navigate to="/users" />} />
             </Routes>
-        </UserProvider>
+        {/* </UserProvider> */ }
     </>);
 }
