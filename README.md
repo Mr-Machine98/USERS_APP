@@ -41,3 +41,10 @@ Para levantar el proyecto de React utiliza los comandos siguientes:
 ```npm
   npm run dev
 ```
+
+3- Ejecuta el backend con el IDE favorito de JAVA: 
+
+
+![5012780_aca4_3](https://github.com/Mr-Machine98/USERS_APP/assets/74254687/6494e79c-f904-4459-8269-3e52a140fe28)
+
+
