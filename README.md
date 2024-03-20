@@ -1,6 +1,6 @@
 # Aplicación USERS_APP fullstack, SpringBoot + React
 
-Un proyecto funcional construido con React y SpringBoot, se trata de un crud en donde se manejan dos roles que cumplen la función de mostrar diferente información dependiendo del usuario que haya ingresado a la apliación.
+Un proyecto funcional construido con React y SpringBoot, se trata de un crud en donde se manejan dos roles que cumplen la función de mostrar diferente información dependiendo del usuario que haya ingresado a la apliación. Pueden descargar un video demostrativo del funcionamiento en este enlace -> https://github.com/Mr-Machine98/USERS_APP/tree/main/video_demostrativo .
 
 > [!IMPORTANT]  
 > Las tecnologías utilizadas son las siguientes:
