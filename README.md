@@ -4,8 +4,8 @@ Un proyecto funcional construido con React y SpringBoot, se trata de un crud en 
 
 > [!IMPORTANT]  
 > Las tecnologías utilizadas son las siguientes:
-> > React
-> > Redux
-> > SpringBoot Java
-> > PostgreSQL
-> > JWT
+> - React
+> - Redux
+> - SpringBoot Java
+> - PostgreSQL
+> - JWT
