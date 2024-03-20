@@ -15,7 +15,26 @@ Un proyecto funcional construido con React y SpringBoot, se trata de un crud en 
 > # variables de entorno React
 >  VITE_API_BASE_URL=http://localhost:8080
 > ```
+>
+>
+> ```
+> # Configuración para PostgreSQL proyecto Backend
+> spring.datasource.url=jdbc:postgresql://localhost:5432/db_users_app
+> spring.datasource.username=
+> spring.datasource.password=
+> spring.datasource.driver-class-name=org.postgresql.Driver
+> spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+> spring.jpa.show-sql=true
+> spring.jpa.hibernate.ddl-auto=update
+> logging.level.org.hibernate.sql=debug
+> ```
 > 
 
+Para levantar el proyecto de React utiliza los comandos siguientes:
+
+Esto para instalar las dependencias del proyecto: 
+```npm
+  npm install
+```
 
 
