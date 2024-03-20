@@ -9,6 +9,7 @@ Un proyecto funcional construido con React y SpringBoot, se trata de un crud en 
 > - SpringBoot Java
 > - PostgreSQL
 > - JWT
+>   
 > Recuerda mirar en el Backend y Frontend, las configuraciones sobre las conexiones de Base de datos y consultas a los EndPoints, por ejemplo:
 > ```
 > # variables de entorno React
