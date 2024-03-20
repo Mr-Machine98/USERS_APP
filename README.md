@@ -1,8 +1,4 @@
-# React + Vite
+# Aplicación USERS_APP fullstack, SpringBoot + React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Un proyecto funcional construido con React y SpringBoot, se trata de un crud en donde se manejan dos roles que cumplen la función de mostrar diferente información dependiendo del usuario que haya ingresado a la apliación.
+[https://github.com/Mr-Machine98/USERS_APP/blob/main/video_demostrativo/2024-03-19%2011-43-37.mp4](https://github.com/Mr-Machine98/USERS_APP/blob/main/video_demostrativo/2024-03-19%2011-43-37.mp4)
