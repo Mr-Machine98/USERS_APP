@@ -32,9 +32,12 @@ Un proyecto funcional construido con React y SpringBoot, se trata de un crud en 
 
 Para levantar el proyecto de React utiliza los comandos siguientes:
 
-Esto para instalar las dependencias del proyecto: 
+1- Instalar las dependencias del proyecto: 
 ```npm
   npm install
 ```
 
-
+2- Levantar el proyecto con: 
+```npm
+  npm run dev
+```
