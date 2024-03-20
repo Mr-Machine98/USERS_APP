@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8080/api/users';
+const BASE_URL = `${import.meta.env.VITE_API_BASE_URL}/api/users`;
 const config = () => {
     return {
         headers: {
@@ -13,6 +13,16 @@ const config = () => {
 export async function findAll() {
     try {
         const response = await axios.get(`${BASE_URL}/all`);
+        return response;
+    } catch (error) {
+        console.error(error.response.data);
+        throw error;
+    }
+}
+
+export async function findAllpages(page = 0) {
+    try {
+        const response = await axios.get(`${BASE_URL}/page/${page}`);
         return response;
     } catch (error) {
         console.error(error.response.data);

@@ -4,22 +4,26 @@ import { UsersList } from "../components/UsersList";
 import "../css/stylesModal.css";
 import { useUsers } from "../hooks/useUsers";
 import { useAuth } from "../auth/hooks/useAuth";
+import { useParams } from "react-router-dom";
+import { Paginator } from "../components/Paginator";
 
 export const UsersPage = () => {
 
     const {
         users,
         visibleForm,
+        paginator,
         handlerOpenForm,
         getUsers} = useUsers();
 
     const {login} = useAuth();    
-    const findAll = async () => getUsers();
+    const {page} = useParams();
+    const findAll = async (page) => getUsers(page);
 
     // find all users
     useEffect(() => {
-        findAll();
-    }, []);
+        findAll(page);
+    }, [page]);
 
     return (<>
         {/* modal */}
@@ -32,8 +36,11 @@ export const UsersPage = () => {
                     { (visibleForm || !login.isAdmin) || <button onClick={handlerOpenForm} className="btn btn-primary my-2">Nuevo Usuario</button>}
                     {users.length === 0 ?
                         <div className="alert alert-warning">No hay usuarios en el sistema</div>
-                        :
-                        <UsersList />
+                        : 
+                        <>
+                            <UsersList />
+                            <Paginator url={"/users/page/"} paginator={paginator}/>
+                        </>
                     }
                 </div>
             </div>
