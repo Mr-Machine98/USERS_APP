@@ -17,7 +17,7 @@ export function UserRoutes() {
                     <Route path="users/register" element={<RegisterPage />} />
                     <Route path="users/edit/:id" element={<RegisterPage />} />
                 </>}
-                <Route path="/" element={<Navigate to="/users" />} />
+                <Route path="/"  element={<Navigate to="/users" />} />
             </Routes>
         {/* </UserProvider> */ }
     </>);
